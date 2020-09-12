@@ -3,7 +3,8 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ in the house');
     getTaskList();
-    $(document).on('click', '#submitBtn', addTask)
+    $(document).on('click', '#submitBtn', addTask);
+    $(document).on('click', '.deleteBtn', deleteTask);
 } // end onReady
 
 
@@ -22,8 +23,8 @@ function getTaskList() {
                 <tr>
                 <td>${task.task}</td>
                 <td>${task.status}</td>
-                <td><button class="completBtn data-id"${task.id}">Mark Complete</button></td>
-                <td><button class="deleteBtn data-id$${task.id}">Delete</button> </td>
+                <td><button class="completBtn" data-id"${task.id}">Mark Complete</button></td>
+                <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
             }
@@ -50,3 +51,39 @@ function addTask() {
             console.log('error in POST', error)
         }) // end AJAX
 } // end addTask
+
+
+/*
+function deleteTask() {
+    console.log('in deleteTask');
+    let taskId = $(this).data('id');
+    console.log('this is the task to delete', taskId);
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${testId}`
+    }).then(function(response) {
+        console.log("deleted", response);
+        getTaskList();
+    }).catch(function(err) {
+        console.log('erros in delete', err);
+        alert('nope!')
+    })
+}
+*/
+
+function deleteTask() {
+    console.log('made it into deleteTask');
+    let taskId = $(this).data('id');
+    console.log('this is the id of the task', taskId)
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskId}`
+    }).then(function(response) {
+        console.log("Deleted!", response);
+        // Refresh page (aka do another GET request)
+        getTaskList();
+    }).catch(function(err) {
+        console.log("Error in delete", err);
+        alert("ruh-roh");
+    });
+}
