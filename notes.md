@@ -3,15 +3,15 @@
 [x] first commit
 [x] Create database
 [x] Test Github PR
-[] Rough out index.html
-[] Boilerplate server.js
-[] Bolierplate client.js
-[] Bolierplate task.router.js
-[] Spin up server
-[] GET handshake
-[] POST handshake
-[] GET logic
-[] POST logic
+[x] Rough out index.html
+[x] Boilerplate server.js
+[x] Bolierplate client.js
+[x] Bolierplate task.router.js
+[x] Spin up server
+[x] GET handshake
+[x] POST handshake
+[x] GET logic
+[x] POST logic
 [] PUT handshake
 [] PUT logic
 [] DELETE handshake
