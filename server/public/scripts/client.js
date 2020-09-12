@@ -3,6 +3,7 @@ $(document).ready(onReady);
 function onReady() {
     console.log('JQ in the house');
     getTaskList();
+    $(document).on('click', '#submitBtn', addTask)
 } // end onReady
 
 
@@ -31,3 +32,21 @@ function getTaskList() {
             console.log('something bad', err);
         }) // end AJAX
 } // end getTaskList
+
+function addTask() {
+    console.log('in addTask');
+    let objectToSend = {
+        task: $('#taskIn').val()
+    };
+
+    $.ajax({
+            type: 'POST',
+            url: '/tasks',
+            data: objectToSend
+        }).then(function(response) {
+            console.log('response came back with', response);
+            getTaskList();
+        }).catch(function(error) {
+            console.log('error in POST', error)
+        }) // end AJAX
+} // end addTask
