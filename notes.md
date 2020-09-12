@@ -14,8 +14,8 @@
 [x] POST logic
 [] PUT handshake
 [] PUT logic
-[] DELETE handshake
-[] Delete logic
+[x] DELETE handshake
+[x] Delete logic
 [] Complete logic
     - styling for complete
     - use of checkbox (research is is checked)
