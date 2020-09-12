@@ -1,10 +1,29 @@
 body {
-    background-color: dodgerblue;
+    background-image: url("./paper.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #f3f3e1;
+    font-family: fantasy;
 }
 
-tbody {
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+th {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+label {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+
+/*tbody {
     background-color: white;
 }
+*/
 
 .isComplete {
     text-decoration: line-through;
