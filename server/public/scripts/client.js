@@ -5,7 +5,8 @@ function onReady() {
     getTaskList();
     $(document).on('click', '#submitBtn', addTask);
     $(document).on('click', '.deleteBtn', deleteTask);
-    $(document).on('click', '.completeBtn', completeTask);
+    $(document).on('change', ':checkbox', completeTask)
+        //$('.trialBox :checkbox').change(completeTask())
 } // end onReady
 
 
@@ -19,6 +20,8 @@ function getTaskList() {
         }).then(function(response) {
             console.log('back from GET', response);
             // initial display
+            // if statement ensures that if the task status is complete
+            // a checked checkbox is appended to the display
             for (let i = 0; i < response.length; i++) {
                 let task = response[i];
                 if (task.status === 'complete') {
@@ -27,6 +30,7 @@ function getTaskList() {
                 <td>${task.task}</td>
                 <td><input type="checkbox" checked></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
+                <td></td>
                 </tr>
                  `)
 
@@ -34,7 +38,7 @@ function getTaskList() {
                     $('#viewTaskList').append(`
                 <tr>
                 <td>${task.task}</td>
-                <td><button class="completeBtn" data-id="${task.id}">Mark Complete</button></td>
+                <td><input type="checkbox" data-id="${task.id}" class="trialBox"></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)

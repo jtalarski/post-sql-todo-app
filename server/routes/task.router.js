@@ -15,7 +15,7 @@ const pool = new Pool({
 
 // GET
 taskRouter.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "tasks" ORDER BY "status" DESC;';
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "status" DESC, "id" DESC;';
     pool.query(queryText).then(result => {
             // Sends back the results in an object
             res.send(result.rows);
