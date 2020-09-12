@@ -1,3 +1,12 @@
 body {
     background-color: dodgerblue;
 }
+
+tbody {
+    background-color: white;
+}
+
+.isComplete {
+    text-decoration: line-through;
+    background-color: dimgray;
+}
