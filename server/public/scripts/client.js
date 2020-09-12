@@ -6,6 +6,8 @@ function onReady() {
     $(document).on('click', '#submitBtn', addTask);
     $(document).on('click', '.deleteBtn', deleteTask);
     $(document).on('click', '.completeBtn', completeTask);
+    $(document).on('change', ':checkbox', completeTaskB)
+        //$('.trialBox :checkbox').change(completeTask())
 } // end onReady
 
 
@@ -27,6 +29,7 @@ function getTaskList() {
                 <td>${task.task}</td>
                 <td><input type="checkbox" checked></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
+                <td></td>
                 </tr>
                  `)
 
@@ -34,7 +37,7 @@ function getTaskList() {
                     $('#viewTaskList').append(`
                 <tr>
                 <td>${task.task}</td>
-                <td><button class="completeBtn" data-id="${task.id}">Mark Complete</button></td>
+                <td><input type="checkbox" data-id="${task.id}" class="trialBox"></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
@@ -91,6 +94,26 @@ function deleteTask() {
 // status will be used to change class of task so that a 
 // line through effect can be applied
 function completeTask() {
+    console.log('in completeTask');
+    let id = $(this).data('id');
+    console.log('mark complete', id);
+    $.ajax({
+            method: 'PUT',
+            url: `tasks/${id}`,
+            data: {
+                status: "complete"
+            }
+        }).then(function(response) {
+            console.log('response from status change', response);
+            getTaskList();
+        }).catch(function(err) {
+            console.log('error is marking complete', err);
+            alert("something went horribly wrong");
+        }) // end AJAX
+} // end completeTask
+
+
+function completeTaskB() {
     console.log('in completeTask');
     let id = $(this).data('id');
     console.log('mark complete', id);
