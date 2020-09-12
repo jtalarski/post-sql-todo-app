@@ -2,7 +2,7 @@
 [x] file structure
 [x] first commit
 [x] Create database
-[] Test Github PR
+[x] Test Github PR
 [] Rough out index.html
 [] Boilerplate server.js
 [] Bolierplate client.js
