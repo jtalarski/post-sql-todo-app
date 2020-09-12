@@ -5,6 +5,7 @@ function onReady() {
     getTaskList();
     $(document).on('click', '#submitBtn', addTask);
     $(document).on('click', '.deleteBtn', deleteTask);
+    $(document).on('click', '.completeBtn', completeTask);
 } // end onReady
 
 
@@ -23,7 +24,7 @@ function getTaskList() {
                 <tr>
                 <td>${task.task}</td>
                 <td>${task.status}</td>
-                <td><button class="completBtn" data-id"${task.id}">Mark Complete</button></td>
+                <td><button class="completeBtn" data-id="${task.id}">Mark Complete</button></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
@@ -53,23 +54,7 @@ function addTask() {
 } // end addTask
 
 
-/*
-function deleteTask() {
-    console.log('in deleteTask');
-    let taskId = $(this).data('id');
-    console.log('this is the task to delete', taskId);
-    $.ajax({
-        method: 'DELETE',
-        url: `/tasks/${testId}`
-    }).then(function(response) {
-        console.log("deleted", response);
-        getTaskList();
-    }).catch(function(err) {
-        console.log('erros in delete', err);
-        alert('nope!')
-    })
-}
-*/
+
 
 function deleteTask() {
     console.log('made it into deleteTask');
@@ -87,3 +72,47 @@ function deleteTask() {
         alert("ruh-roh");
     });
 }
+
+
+
+// change status to complete
+// status will be used to change class of task so that a 
+// line through effect can be applied
+function completeTask() {
+    console.log('in completeTask');
+    let id = $(this).data('id');
+    console.log('mark complete', id);
+    $.ajax({
+            method: 'PUT',
+            url: `tasks/${id}`,
+            data: {
+                status: "complete"
+            }
+        }).then(function(response) {
+            console.log('response from status change', response);
+            getTaskList();
+        }).catch(function(err) {
+            console.log('error is marking complete', err);
+            alert("something went horribly wrong");
+        }) // end AJAX
+} // end completeTask
+
+/*
+function completeTask() {
+    let taskId = $(this).data('id');
+    console.log('transfer', taskId);
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskId}`,
+        data: {
+            status: "Complete"
+        }
+    }).then(function(response) {
+        console.log('response from transfer', response);
+        getKoalas();
+    }).catch(function(err) {
+        console.log("error in setting transfer", err);
+        alert("something went wrong");
+    })
+}
+*/
