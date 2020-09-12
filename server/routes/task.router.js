@@ -59,7 +59,7 @@ taskRouter.put('/:id', (req, res) => {
     let queryText = `UPDATE "tasks" SET "status" = 'complete' WHERE "id" = ${req.params.id};`;
     pool.query(queryText)
         .then((result) => {
-            console.log('DB should update', result);
+            console.log('DB should update', task);
             res.sendStatus(200);
         }).catch((er) => {
             console.log("Error from put", err);

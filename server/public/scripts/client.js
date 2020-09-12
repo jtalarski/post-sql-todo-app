@@ -25,7 +25,7 @@ function getTaskList() {
                     $('#viewTaskList').append(`
                 <tr class="isComplete">
                 <td>${task.task}</td>
-                <td></td>
+                <td><input type="checkbox" checked></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
@@ -108,23 +108,3 @@ function completeTask() {
             alert("something went horribly wrong");
         }) // end AJAX
 } // end completeTask
-
-/*
-function completeTask() {
-    let taskId = $(this).data('id');
-    console.log('transfer', taskId);
-    $.ajax({
-        method: 'PUT',
-        url: `/tasks/${taskId}`,
-        data: {
-            status: "Complete"
-        }
-    }).then(function(response) {
-        console.log('response from transfer', response);
-        getKoalas();
-    }).catch(function(err) {
-        console.log("error in setting transfer", err);
-        alert("something went wrong");
-    })
-}
-*/

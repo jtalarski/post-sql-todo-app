@@ -43,3 +43,7 @@ label {
     padding: 10px;
     text-align: center;
 }
+
+.class:checked {
+    background-color: gray;
+}
