@@ -10,3 +10,17 @@ tbody {
     text-decoration: line-through;
     background-color: dimgray;
 }
+
+#container {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+#tableMove {
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}

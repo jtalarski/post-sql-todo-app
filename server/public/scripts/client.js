@@ -23,10 +23,9 @@ function getTaskList() {
                 let task = response[i];
                 if (task.status === 'complete') {
                     $('#viewTaskList').append(`
-                <tr>
-                <td class='isComplete' >${task.task}</td>
-                <td class='isComplete' > ${task.status}</td>
-                <td>&#x2713</td>
+                <tr class="isComplete">
+                <td>${task.task}</td>
+                <td></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
@@ -35,7 +34,6 @@ function getTaskList() {
                     $('#viewTaskList').append(`
                 <tr>
                 <td>${task.task}</td>
-                <td>${task.status}</td>
                 <td><button class="completeBtn" data-id="${task.id}">Mark Complete</button></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
