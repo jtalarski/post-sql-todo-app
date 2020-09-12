@@ -11,6 +11,7 @@ function onReady() {
 
 function getTaskList() {
     console.log('in getTaskList');
+
     $('#viewTaskList').empty();
     $.ajax({
             method: "GET",
@@ -20,7 +21,18 @@ function getTaskList() {
             // initial display
             for (let i = 0; i < response.length; i++) {
                 let task = response[i];
-                $('#viewTaskList').append(`
+                if (task.status === 'complete') {
+                    $('#viewTaskList').append(`
+                <tr>
+                <td class='isComplete' >${task.task}</td>
+                <td class='isComplete' > ${task.status}</td>
+                <td>&#x2713</td>
+                <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
+                </tr>
+                 `)
+
+                } else {
+                    $('#viewTaskList').append(`
                 <tr>
                 <td>${task.task}</td>
                 <td>${task.status}</td>
@@ -28,6 +40,7 @@ function getTaskList() {
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
+                }
             }
         }).catch(function(err) {
             alert(err);
@@ -47,6 +60,7 @@ function addTask() {
             data: objectToSend
         }).then(function(response) {
             console.log('response came back with', response);
+            $('#taskIn').val('');
             getTaskList();
         }).catch(function(error) {
             console.log('error in POST', error)
