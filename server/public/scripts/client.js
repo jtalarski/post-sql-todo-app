@@ -23,10 +23,9 @@ function getTaskList() {
                 let task = response[i];
                 if (task.status === 'complete') {
                     $('#viewTaskList').append(`
-                <tr>
-                <td class='isComplete' >${task.task}</td>
-                <td class='isComplete' > ${task.status}</td>
-                <td>&#x2713</td>
+                <tr class="isComplete">
+                <td>${task.task}</td>
+                <td><input type="checkbox" checked></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
                  `)
@@ -35,7 +34,6 @@ function getTaskList() {
                     $('#viewTaskList').append(`
                 <tr>
                 <td>${task.task}</td>
-                <td>${task.status}</td>
                 <td><button class="completeBtn" data-id="${task.id}">Mark Complete</button></td>
                 <td><button class="deleteBtn" data-id="${task.id}">Delete</button> </td>
                 </tr>
@@ -110,23 +108,3 @@ function completeTask() {
             alert("something went horribly wrong");
         }) // end AJAX
 } // end completeTask
-
-/*
-function completeTask() {
-    let taskId = $(this).data('id');
-    console.log('transfer', taskId);
-    $.ajax({
-        method: 'PUT',
-        url: `/tasks/${taskId}`,
-        data: {
-            status: "Complete"
-        }
-    }).then(function(response) {
-        console.log('response from transfer', response);
-        getKoalas();
-    }).catch(function(err) {
-        console.log("error in setting transfer", err);
-        alert("something went wrong");
-    })
-}
-*/
