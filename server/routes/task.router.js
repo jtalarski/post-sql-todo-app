@@ -42,7 +42,7 @@ taskRouter.post('/', (req, res) => {
 
 taskRouter.delete('/:id', (req, res) => {
     let id = req.params.id
-    const queryText = `DELETE FROM "tasks" WHERE id = $1`
+    const queryText = `DELETE FROM "tasks" WHERE id = $1;`;
     pool.query(queryText, [id])
         .then((result) => {
             res.sendStatus(204);
