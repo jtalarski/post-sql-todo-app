@@ -3,7 +3,7 @@ const taskRouter = express.Router();
 const pg = require('pg');
 
 // DB CONNECTION
-const Pool = pg.Pool;
+/* const Pool = pg.Pool;
 
 const pool = new Pool({
     database: "weekend-to-do-app",
@@ -12,6 +12,20 @@ const pool = new Pool({
     max: 12,
     idleTimeoutMillis: 20000
 });
+*/
+let pool;
+if (process.env.DATABASE_URL) {
+    console.log("Gonna connect to a heroku DB");
+    pool = new pg.Pool({
+        connectionString: process.env.DATABASE_URL
+    });
+} else {
+    console.log("Assuming we're running locally");
+    pool = new pg.Pool({
+        database: "weekend-to-do-app"
+    });
+}
+
 
 // GET
 taskRouter.get('/', (req, res) => {
