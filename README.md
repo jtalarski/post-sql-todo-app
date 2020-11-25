@@ -1,12 +1,9 @@
 # Project Name
 SQL To Do App
 
-_Duration: Weekend Project_
-
 This is a basic ToDo list where a use can make a list of tasks that need to be completed. The user can mark the tasks as complete and or delete them from the list.
 
 For this app I used my full stack integration skills
-
 ## Demo
 ![demo](./ToDo_app.gif)
 
